@@ -1,5 +1,11 @@
+# Выставляем кодировку UTF-8 для поддержки кириллицы
 # -*- coding: utf-8 -*-
+# Для начала устанавливаем пакет requests через pip
+# pip install requests
+# Затем ее можно импортить в наш код
+# Импорт пакета requests
 import requests
+# Для того чтобы создать бота для телеграм необходимо его создать через @BotFather
 
 token = '506700618:AAHhIoyhw_GS7VirwkleTblXyILdzhpVp54'
 url = 'https://api.telegram.org/bot{}/'.format(token)
@@ -145,6 +151,8 @@ def main():
             if 'text' in message:
                 if message['text'] == u'/start':
                     send_mess(chat_id, description)
+                elif u'/stickers' in  message['text']:
+                    send_mess(chat_id, 'https://t.me/addstickers/qaztolatpack')
                 else:
                     translated = translate(message['text'])
                     send_mess(chat_id, translated)
