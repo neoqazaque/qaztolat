@@ -1,11 +1,14 @@
-# Выставляем кодировку UTF-8 для поддержки кириллицы
 # -*- coding: utf-8 -*-
-# Для начала устанавливаем пакет requests через pip
-# pip install requests
-# Затем ее можно импортить в наш код
-# Импорт пакета requests
+''' 
+Для начала устанавливаем пакет requests через pip 
+pip install requests 
+Затем ее можно импортить в наш код
+Импорт пакета requests
+'''
 import requests
-# Для того чтобы создать бота для телеграм необходимо его создать через @BotFather
+'''
+Для того чтобы создать бота для телеграм необходимо его создать через @BotFather
+'''
 
 token = '506700618:AAHhIoyhw_GS7VirwkleTblXyILdzhpVp54'
 url = 'https://api.telegram.org/bot{}/'.format(token)
@@ -115,13 +118,6 @@ def get_updates_json(url, offset = None):
     return response.json()
 
 
-
-def last_update(data):
-    results = data['result']
-    total_updates = len(results) - 1
-    return results[total_updates]
-
-
 def send_mess(chat, text):
     params = {'chat_id': chat, 'text': text}
     response = requests.post(url + 'sendMessage', data=params)
@@ -151,7 +147,7 @@ def main():
             if 'text' in message:
                 if message['text'] == u'/start':
                     send_mess(chat_id, description)
-                elif u'/stickers' in  message['text']:
+                elif message['text'] == u'/stickers':
                     send_mess(chat_id, 'https://t.me/addstickers/qaztolatpack')
                 else:
                     translated = translate(message['text'])
